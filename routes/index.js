@@ -13,6 +13,6 @@ router.post('/newsletter', homeController.newsletter);
 router.get('/admin', adminController.painel);
 
 router.get('/cadastro',homeController.cadastro);
-router.post('/cadastro',homeController.cadastro);
+router.post('/cadastro',homeController.salvar);
 
 module.exports = router;

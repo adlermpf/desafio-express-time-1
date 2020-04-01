@@ -90,9 +90,9 @@ const homeController = {
         nome,email,senha
       }]
     }
-listaCadastro=JSON.stringify(listaCadastro);
-fs.writeFileSync(fileCadastro,listaCadastro);
-res.render('cadastroUsuario', { title: "Cadastro Usuário"});
+    listaCadastro=JSON.stringify(listaCadastro);
+    fs.writeFileSync(fileCadastro,listaCadastro);
+    res.render('cadastroUsuario', { title: "Cadastro Usuário"});
   }
 };
 

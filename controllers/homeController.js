@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const bcrypt = require('bcrypt');
 const homeController = {
   index: (req, res) => {
     let servicos = [
@@ -73,6 +74,25 @@ const homeController = {
     fs.writeFileSync(fileNewsLetter, listaNewsLetter);
 
     res.render('newsletter', {emailnewsletter, title: "Newsletter"});
+  },
+  cadastro:(req,res)=>{
+    let {nome,email,senha}=req.body;
+  
+    senha= bcrypt.hashSync(senha,10);
+    const fileCadastro = path.join('db','usuarios.json');
+    let listaCadastro ={};
+
+    if(fs.existsSync(fileCadastro)){
+      listaCadastro = JSON.parse(fs.readFileSync(fileCadastro,{encoding:"UTF-8"}));
+      listaCadastro.push(nome,email,senha)
+    } else{
+      listaCadastro=[{
+        nome,email,senha
+      }]
+    }
+listaCadastro=JSON.stringify(listaCadastro);
+fs.writeFileSync(fileCadastro,listaCadastro);
+res.render('cadastroUsuario', { title: "Cadastro Usuário"});
   }
 };
 

@@ -10,6 +10,8 @@ router.post('/contato', homeController.contato);
 
 router.post('/newsletter', homeController.newsletter);
 
-router.get('/admin', adminController.painel)
+router.get('/admin', adminController.painel);
+
+router.get('/cadastro',homeController.cadastro);
 
 module.exports = router;

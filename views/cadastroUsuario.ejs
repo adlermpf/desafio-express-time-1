@@ -2,6 +2,9 @@
 
 <section id="contato">
   <div class="container py-5">
+    <% if (mensagem){ %>
+    <p> <%= mensagem %> </p>
+    <% } %>
     <div class="row">
       <div class="col-md-6">
         <form action="/contato" method="POST">

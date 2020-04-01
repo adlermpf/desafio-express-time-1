@@ -76,6 +76,10 @@ const homeController = {
     res.render('newsletter', {emailnewsletter, title: "Newsletter"});
   },
   cadastro:(req,res)=>{
+ 
+res.render('cadastroUsuario', { title: "Cadastro Usuário"});
+  },
+  salvar:(req,res)=>{
     let {nome,email,senha}=req.body;
   
     senha= bcrypt.hashSync(senha,10);
@@ -84,7 +88,7 @@ const homeController = {
 
     if(fs.existsSync(fileCadastro)){
       listaCadastro = JSON.parse(fs.readFileSync(fileCadastro,{encoding:"UTF-8"}));
-      listaCadastro.push(nome,email,senha)
+      listaCadastro.push({nome,email,senha})
     } else{
       listaCadastro=[{
         nome,email,senha
@@ -92,7 +96,7 @@ const homeController = {
     }
 listaCadastro=JSON.stringify(listaCadastro);
 fs.writeFileSync(fileCadastro,listaCadastro);
-res.render('cadastroUsuario', { title: "Cadastro Usuário"});
+res.render('cadastroUsuario', {mensagem:"Cadastro feito com sucesso!", title: "Cadastro Usuário"})
   }
 };
 

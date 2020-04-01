@@ -92,7 +92,7 @@ res.render('cadastroUsuario', { title: "Cadastro Usuário"});
     } else{
       listaCadastro=[{
         nome,email,senha
-      }]
+      }];
     }
 listaCadastro=JSON.stringify(listaCadastro);
 fs.writeFileSync(fileCadastro,listaCadastro);

@@ -7,7 +7,11 @@ const adminController = {
         
         let listaNewsletter = JSON.parse(fs.readFileSync(pathNewsletter, {encoding: "utf-8"}));
 
+        if (req.session.usuario){
         res.render("admin", {listaNewsletter: listaNewsletter.inscritos, title: "Painel Admin"});
+        }else {
+            res.redirect('login');
+        }
     }
 }
 
